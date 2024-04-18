@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GrossetApp.MeteoPage"
+             x:Name="MeteoGrosseto"
+             BindingContext="{x:Reference Meteo}"
+             Title="Meteo">
+
+    <Grid RowDefinitions="200, *">
+
+        <CollectionView Grid.Row="0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding}"
+                           HorizontalOptions="Center"/>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <CollectionView Grid.Row="1"
+                        x:Name="collectionViewMeteo"
+                        ItemsSource="{Binding dailies}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+                        <Grid ColumnDefinitions="Auto, *">
+                            <StackLayout Grid.Column="0">
+                                <Label Text="{Binding time}"
+                                       FontAttributes="Bold"
+                                       FontSize="Medium"/>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1">
+                                <Label Text="{Binding values.temperatureMin, StringFormat='Min:{0} °C'}"/>
+                                <Label Text="{Binding values.temperatureMax, StringFormat='Max:{0} °C' }"/>
+                                <Label Text="Alba - Tramonto"/>
+                                <Label Text="{Binding values.sunTime}"/>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <ActivityIndicator Grid.Row="1"
+                       Color="{StaticResource Primary}"
+                       IsRunning="True"
+                       IsEnabled="True"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       x:Name="LoadingIndicator"/>
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GrossetApp.CittaPage"
+             x:Name="GrossetoCitta"
+             BindingContext="{x:Reference GrossetoCitta}"
+             Title="Città">
+
+    <Grid RowDefinitions="200, *">
+
+        <CollectionView Grid.Row="0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="grosseto"/>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+        <CollectionView Grid.Row="1"
+                    x:Name="collectionViewCitta"
+                    ItemsSource="{Binding Citta}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+                        <Grid RowDefinitions="100, 100">
+                            <Label Grid.Row="0"
+                                   Text="Abitanti"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Start"/>
+                            <Label Grid.Row="0"
+                                   Text="{Binding Abitanti}"
+                                   HorizontalOptions="End"/>
+                            <Label Grid.Row="1"
+                                   Text="Sindaco"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Start"/>
+                            <Label Grid.Row="1"
+                                   Text="{Binding Sindaco}"
+                                   HorizontalOptions="End"/>
+                        </Grid>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <ActivityIndicator Grid.Row="1"
+                       Color="{StaticResource Primary}"
+                       IsRunning="True"
+                       IsEnabled="True"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       x:Name="LoadingIndicator"/>
+    </Grid>
+
+</ContentPage>
